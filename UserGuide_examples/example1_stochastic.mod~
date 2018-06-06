@@ -30,10 +30,6 @@ marginal cost of capital equal to markup equation
 investment equality
 "identity that may be useful"
 law of motion of technology (added to the deterministic model)
-
-There has to be an equal number of equations and endogenous variables!
-Timing: when the variable decided
-Blanchard-Kahnconditionsaremetonlyifthenumberofnon-predetermined variables equals the number of eigenvalues greater than one.
 */
 
 model;
@@ -47,9 +43,3 @@ i = k-(1-delta)*k(-1);
 yl = y/l;
 z = rho*z(-1)+e;
 end;
-
-/*
-Specifying steady states and/or initial values
-
-*/
-

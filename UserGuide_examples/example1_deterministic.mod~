@@ -1,21 +1,21 @@
-/* From User Guide 3.4.1, the stochastic case
+// From User Guide 3.4.1, the deterministic case
 
-Endogenous variables: add z
-Exogenous variables: add e
-Parameters: add rho
+/*
+Endogenous variables
+Exogenous variables
+Parameters
 Parameter values
 */
 
-var y c k i l y l w r z;
-varexo e;
+var y c k i l y l w r;
+varexo z;
 
-parameters beta psi delta alpha rho sigma epsilon; 
+parameters beta psi delta alpha sigma epsilon; 
 
 alpha = 0.33;
 beta = 0.99;
 delta = 0.023;
 psi = 1.75;
-rho = 0.95;
 sigma = (0.007/(1-alpha));
 epsilon = 10;
 
@@ -29,11 +29,7 @@ marginal cost of labor equal to markup equation
 marginal cost of capital equal to markup equation
 investment equality
 "identity that may be useful"
-law of motion of technology (added to the deterministic model)
-
-There has to be an equal number of equations and endogenous variables!
-Timing: when the variable decided
-Blanchard-Kahnconditionsaremetonlyifthenumberofnon-predetermined variables equals the number of eigenvalues greater than one.
+law of motion of technology
 */
 
 model;
@@ -47,9 +43,3 @@ i = k-(1-delta)*k(-1);
 yl = y/l;
 z = rho*z(-1)+e;
 end;
-
-/*
-Specifying steady states and/or initial values
-
-*/
-
