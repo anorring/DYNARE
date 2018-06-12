@@ -28,7 +28,7 @@ end;
 // Check that this is indeed the steady state
 steady;
 
-// Declare a positive technological shock in period 1
+// Declare a positive technological shock in period 1 (*A not specified explicitly, dynare uses implicitly the initval)
 shocks;
 var A;
 periods 1;
