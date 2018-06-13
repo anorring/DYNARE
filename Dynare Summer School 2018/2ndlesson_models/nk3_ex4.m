@@ -151,7 +151,7 @@ kappa = M_.params( 8 );
 % SHOCKS instructions
 %
 M_.det_shocks = [ M_.det_shocks;
-struct('exo_det',0,'exo_id',2,'multiplicative',0,'periods',1:1,'value',0.01) ];
+struct('exo_det',0,'exo_id',2,'multiplicative',0,'periods',1:1,'value',0.08) ];
 M_.exo_det_length = 0;
 steady;
 options_.periods = 100;

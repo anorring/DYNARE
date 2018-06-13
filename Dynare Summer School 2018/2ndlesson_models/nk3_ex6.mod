@@ -68,5 +68,8 @@ check;
 extended_path(periods=300);
 
 // Plot 20 first periods of consumption
-ic = varlist_indices('r',M_.endo_names);
-plot(oo_.endo_simul(ic, 1:21));
+// ic = varlist_indices('r',M_.endo_names);
+// plot(oo_.endo_simul(ic, 1:21));
+// Instead you can just use
+
+rplot r;

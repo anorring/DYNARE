@@ -21,11 +21,13 @@ eps_b 		 1
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.01, 	 time = 0.017697
-Iter: 2,	 err. = 0.00021865, 	 time = 0.003799
-Iter: 3,	 err. = 6.1907e-08, 	 time = 0.004514
+Iter: 1,	 err. = 0.08, 	 time = 0.010462
+Iter: 2,	 err. = 0.012463, 	 time = 0.003349
+Iter: 3,	 err. = 0.0014434, 	 time = 0.002976
+Iter: 4,	 err. = 0.00060638, 	 time = 0.003281
+Iter: 5,	 err. = 2.5754e-06, 	 time = 0.002123
 
-Total time of simulation: 0.029575
+Total time of simulation: 0.026767
 --------------------------------------------------------
 
 Perfect foresight solution found.

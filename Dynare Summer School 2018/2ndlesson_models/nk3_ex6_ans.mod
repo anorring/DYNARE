@@ -1,4 +1,4 @@
-// 3-equations NK model (without ZLB): stochastic case
+// 3-equations NK model with ZLB: extended path case (question 6)
 
 var y     // GDP
     pie   // Inflation
@@ -36,22 +36,16 @@ kappa = 0.1;
 model;
  // Euler equation
  beta*r/pie(+1)*eps_b(+1)*y(+1)^(-sigma) = eps_b*y^(-sigma);
-
+ 
  // NK Phillips curve
  log(pie/STEADY_STATE(pie)) = delta*log(pie(+1)/STEADY_STATE(pie)) + kappa*log(y/STEADY_STATE(y)) - log(eps_a);
-
- // Taylor rule (in multiplicative form) NOTA BENE: the ZLB doesn't work,
- log(r) = max(0,rho_r*log(r(-1)) + (1-rho_r)*(log(STEADY_STATE(pie)/beta) + rho_pie*log(pie(-1)/STEADY_STATE(pie)) + rho_y*log(y/STEADY_STATE(y))) + eta_r);
-
+ 
+ // Taylor rule (in multiplicative form)
+ log(r) = max(rho_r*log(r(-1)) + (1-rho_r)*(log(STEADY_STATE(pie)/beta) + rho_pie*log(pie(-1)/STEADY_STATE(pie)) + rho_y*log(y/STEADY_STATE(y))) + eta_r, 0);
+ 
  // Stochastic shocks (AR(1) processes)
  log(eps_a) = rho_a*log(eps_a(-1)) + eta_a;
  log(eps_b) = rho_b*log(eps_b(-1)) + eta_b;
-end;
-
-shocks;
- var eta_r; stderr 0.01;
- var eta_a; stderr 0.08;
- var eta_b; stderr 0.05;
 end;
 
 steady_state_model;
@@ -62,6 +56,15 @@ steady_state_model;
  r = pie/beta;
 end;
 
+
+shocks;
+ var eta_r; stderr 0.01;
+ var eta_a; stderr 0.08;
+ var eta_b; stderr 0.05;
+end;
+
 steady;
-check;
-stoch_simul(order=1);
+
+extended_path(periods=40);
+
+rplot r;

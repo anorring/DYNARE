@@ -157,8 +157,8 @@ M_.Sigma_e(3, 3) = (0.05)^2;
 steady;
 oo_.dr.eigval = check(M_,options_,oo_);
 extended_path([], 300, [], options_, M_, oo_);
-ic = varlist_indices('r',M_.endo_names);
-plot(oo_.endo_simul(ic, 1:21));
+var_list_ = char('r');
+rplot(var_list_);
 save('nk3_ex6_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('nk3_ex6_results.mat', 'estim_params_', '-append');

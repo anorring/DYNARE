@@ -51,7 +51,7 @@ end;
 shocks;
  var eta_a; 
  periods 1;
- values 0.01;
+ values 0.08; // I had 0.01
 end;
 
 steady_state_model;

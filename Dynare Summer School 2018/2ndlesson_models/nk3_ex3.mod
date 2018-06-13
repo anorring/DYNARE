@@ -1,4 +1,5 @@
 // 3-equations NK model (without ZLB): stochastic case
+// MY ANSWER CORRECT
 
 var y     // GDP
     pie   // Inflation

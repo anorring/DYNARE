@@ -1,4 +1,4 @@
-// 3-equations NK model (without ZLB): stochastic case
+// 3-equations NK model with ZLB: perfect foresight case (question 4)
 
 var y     // GDP
     pie   // Inflation
@@ -40,15 +40,12 @@ model;
  // NK Phillips curve
  log(pie/STEADY_STATE(pie)) = delta*log(pie(+1)/STEADY_STATE(pie)) + kappa*log(y/STEADY_STATE(y)) - log(eps_a);
 
- // Taylor rule (in multiplicative form) NOTA BENE: the ZLB doesn't work, i.e. the constraint is not enforced, because we have a stochastic model
- log(r) = max(0,rho_r*log(r(-1)) + (1-rho_r)*(log(STEADY_STATE(pie)/beta) + rho_pie*log(pie(-1)/STEADY_STATE(pie)) + rho_y*log(y/STEADY_STATE(y))) + eta_r);
+ // Taylor rule (in multiplicative form)
+ log(r) = max(rho_r*log(r(-1)) + (1-rho_r)*(log(STEADY_STATE(pie)/beta) + rho_pie*log(pie(-1)/STEADY_STATE(pie)) + rho_y*log(y/STEADY_STATE(y))) + eta_r, 0);
 
  // Stochastic shocks (AR(1) processes)
  log(eps_a) = rho_a*log(eps_a(-1)) + eta_a;
  log(eps_b) = rho_b*log(eps_b(-1)) + eta_b;
-end;
-
-shocks;
 end;
 
 steady_state_model;
@@ -61,23 +58,13 @@ end;
 
 steady;
 
-perfect_foresight_setup(periods=300);
+shocks;
+ var eta_a;
+ periods 1;
+ values 0.08;
+end;
+
+perfect_foresight_setup(periods=40);
 perfect_foresight_solver;
-
-// Declare unexpected shock (after first simulation!)
-oo_.exo_simul(11, 1) = 0.1; // Period 10 has index 11!
-
-// Strip first 9 periods and save them
-saved_endo = oo_.endo_simul(:, 1:9);  // Save periods 0 to 8
-saved_exo = oo_.exo_simul(1:9, :);
-oo_.endo_simul = oo_.endo_simul(:, 10:end); // Keep periods 9
-oo_.exo_simul = oo_.exo_simul(10:end, :);
-
-periods 291;
-perfect_foresight_solver;
-
-// Combine the two simulations
-oo_.endo_simul = [ saved_endo oo_.endo_simul ];
-oo_.exo_simul = [ saved_exo; oo_.exo_simul ];
 
 rplot r;

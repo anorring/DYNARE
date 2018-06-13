@@ -51,7 +51,7 @@ end;
 shocks;
 var eta_a; 
  periods 1;
- values 0;
+ values 0.08; // I had 0
 end;
 
 steady_state_model;
@@ -68,12 +68,12 @@ perfect_foresight_setup(periods=100);
 perfect_foresight_solver;
 
 // Declare unexpected shock (after first simulation!)
-oo_.exo_simul(6, 1) = -0.01; // Period 5 has index 6!
+oo_.exo_simul(6, 2) = -0.08; // Period 5 has index 6, and eta_a has index 2 (the second shock) I had 1 instead of 2
 
 // Strip first 4 periods and save them
 saved_endo = oo_.endo_simul(:, 1:4);  // Save periods 0 to 4
 saved_exo = oo_.exo_simul(1:4, :);
-oo_.endo_simul = oo_.endo_simul(:, 5:end); // Keep periods 4
+oo_.endo_simul = oo_.endo_simul(:, 5:end); // Keep periods 5 to end
 oo_.exo_simul = oo_.exo_simul(5:end, :);
 
 periods 96;
