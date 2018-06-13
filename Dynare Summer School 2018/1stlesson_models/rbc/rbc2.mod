@@ -1,4 +1,4 @@
-var C K L w r A;
+ var C K L w r A;
  varexo e;
 
  parameters rho delta gamma alpha lambda g psi;
