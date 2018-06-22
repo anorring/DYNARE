@@ -1,2 +1,2 @@
 # DYNARE
-Almost all Dynare-related stuff.
+Tricks and tips to DYNARE
